@@ -22,4 +22,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: execute py script
+        env:
+          REVERB_BEARER_TOKEN: ${{ secrets.REVERB_BEARER_TOKEN }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
         run: python pull_reverb_controllers.py
