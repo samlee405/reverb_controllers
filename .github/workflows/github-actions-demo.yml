@@ -2,7 +2,7 @@ name: Run Reverb Script
 
 on:
   schedule:
-    - cron: "0 9-21 * * *"
+    - cron: "0 0-4,16-23 * * *"
 
 jobs:
   build:
