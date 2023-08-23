@@ -30,7 +30,7 @@ def format_message(controllers):
     message = ""
     for controller in controllers:
         # title = controller["model"]
-        link = "https://reverb.com/item/" + controller["id"]
+        link = "https://reverb.com/item/" + str(controller["id"])
         price = controller["price"]["display"]
 
         message += f"\n{link} - {price}"
