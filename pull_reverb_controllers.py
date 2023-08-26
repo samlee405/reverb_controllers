@@ -13,14 +13,17 @@ xz_blacklist = {}
 
 
 def get_controllers():
-    blacklist = {}
+    blacklist = {"72845433"}
     headers = {"Authorization": os.getenv("REVERB_BEARER_TOKEN")}
     listings = requests.get("https://api.reverb.com/api/my/feed", headers=headers)
 
     controllers = []
 
     for item in listings.json()["listings"]:
-        if item["price"]["amount_cents"] / 100 < 1500 and item["id"] not in blacklist:
+        if (
+            item["price"]["amount_cents"] / 100 < 1500
+            and str(item["id"]) not in blacklist
+        ):
             controllers.append(item)
 
     return controllers
@@ -44,8 +47,14 @@ def send_sms(message):
     auth_token = os.getenv("TWILIO_AUTH_TOKEN")
     client = Client(account_sid, auth_token)
 
+    # message = client.messages.create(
+    #     from_="+18555429907", body=message, to="+14159396293"
+    # )
+
     message = client.messages.create(
-        from_="+18555429907", body=message, to="+14159396293"
+        from_="whatsapp:+14155238886",
+        body=message,
+        to="whatsapp:+14159396293",
     )
 
 
