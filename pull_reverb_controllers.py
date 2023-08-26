@@ -13,7 +13,7 @@ xz_blacklist = {}
 
 
 def get_controllers():
-    blacklist = {"72845433"}
+    blacklist = {}
     headers = {"Authorization": os.getenv("REVERB_BEARER_TOKEN")}
     listings = requests.get("https://api.reverb.com/api/my/feed", headers=headers)
 
@@ -21,7 +21,7 @@ def get_controllers():
 
     for item in listings.json()["listings"]:
         if (
-            item["price"]["amount_cents"] / 100 < 1500
+            item["price"]["amount_cents"] / 100 <= 1500
             and str(item["id"]) not in blacklist
         ):
             controllers.append(item)
